@@ -36,4 +36,6 @@ clientServices.listaClientes().then((data) =>{
         table.appendChild(nuevaLinea);
     });
 
-}).catch((error) => alert("Ocurrio un error"));
+})
+.catch((error) => alert("Ocurrio un error"));
+console.log(clientServices);
