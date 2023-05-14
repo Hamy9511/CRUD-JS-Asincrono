@@ -12,9 +12,21 @@ const obtenerInformacion = async () => {
 
 const nombre = document.querySelector("[data-nombre]")
 const email = document.querySelector("[data-email]")
-const perfil = await clientServices.detalleCliente(id);
+
+try{
+    const perfil = await clientServices.detalleCliente(id);
+    if(perfil.nombre && perfil.email){
         nombre.value = perfil.nombre;
         email.value = perfil.email;
+    }else{
+        throw new error;
+    }       
+}catch(error){
+    console.log("Catch Error", error);
+    alert("Hubo un error");
+    window.location.href = "/screens/error.html"
+}
+
 };
 
 obtenerInformacion();
