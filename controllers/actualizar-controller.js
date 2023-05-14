@@ -1,5 +1,7 @@
 import { clientServices } from "../service/client-service.js";
 
+const formulario = document.querySelector("[data-form]");
+
 const obtenerInformacion = () => {
     const url = new URL(window.location);
     const id = (url.searchParams.get("id"));
@@ -18,3 +20,15 @@ const email = document.querySelector("[data-email]")
 };
 
 obtenerInformacion();
+
+formulario.addEventListener("submit",(evento) =>{
+    evento.preventDefault() //evitar que el formulario trate de hacer la peticion y usamos js
+    const url = new URL(window.location);
+    const id = (url.searchParams.get("id"));
+
+    const nombre = document.querySelector("[data-nombre]").value;
+    const email = document.querySelector("[data-email]").value;
+    clientServices.actualizarCliente(nombre,email,id).then(()=>{
+        window.location.href = "/screens/edicion_concluida.html";
+    })
+});
